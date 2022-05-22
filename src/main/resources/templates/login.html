@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>登陆</title>
+</head>
+<body>
+<div style="padding-top: 100px;padding-left: 45%">
+    <form action="login" method="get">
+        <h3 th:text="#{tips}" >Please Sign in</h3>
+        <p style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
+<!--        <input type="hidden" name="_method" value="get"/>-->
+        <input type="text" name="username" th:placeholder="#{username}" > <br>
+        <input type="password" name="pwd" th:placeholder="#{pwd}"> <br>
+        <input type="checkbox" value="remember">[[#{remember}]] <br>
+        <button type="submit" th:text="#{sign}" > Sign in</button>  <br>
+
+        <a th:href="@{/login.html(lang='zh_CN')}">中文</a> &nbsp;&nbsp;&nbsp;
+        <a th:href="@{/login.html(lang='en_US')}">English</a>
+    </form>
+</div>
+
+</body>
+</html>

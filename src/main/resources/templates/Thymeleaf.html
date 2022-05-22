@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Thymeleaf</title>
+</head>
+<body>
+<h1 th:text="'欢迎您：'+${name}">没有Thymeleaf的静态资源页面</h1>
+
+<form action="getStudentsByTid" method="get">
+    tid:<input name="tid" type="text" placeholder="请输入tid"><br>
+    <br>
+    <input type="submit" value="提交"><input type="reset" value="重置">
+</form>
+</body>
+</html>

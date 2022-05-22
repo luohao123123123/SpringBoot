@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.luohao.springboot.imp.Mybatis_Student_Teacher_Imp">
+    <resultMap id="StudentResultMap" type="Mybatis_Student">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="sex" jdbcType="VARCHAR" property="sex"/>
+        <result column="tid" jdbcType="INTEGER" property="tid"/>
+    </resultMap>
+
+<!--if用法-->
+<!--    <select id="getStudentsByTid" parameterType="INTEGER" resultType="Mybatis_Student">-->
+<!--        select s.* from student s,teacher t-->
+<!--        <where> s.tid=t.id-->
+<!--         <if test="tid == null">-->
+
+<!--         </if>-->
+<!--         <if test="tid == 1">-->
+<!--                and t.id=1-->
+<!--         </if>-->
+<!--         <if test="tid == 2">-->
+<!--                and t.id=2-->
+<!--         </if>-->
+<!--        </where>-->
+<!--    </select>-->
+
+<!--  choose-when-otherwise 用法   -->
+    <select id="getStudentsByTid" parameterType="INTEGER" resultType="Mybatis_Student">
+        select s.* from student s,teacher t
+        <where>
+         s.tid=t.id
+            <choose>
+                <when test="tid != null and tid==1">
+                    and t.id=1
+                </when>
+                <when test="tid != null and tid==2">
+                    and t.id=2
+                </when>
+                <otherwise>
+
+                </otherwise>
+            </choose>
+        </where>
+    </select>
+
+<!--    foreach用法-->
+    <select id="getStudentsByTids" parameterType="INTEGER" resultType="Mybatis_Student">
+        select s.* from student s,teacher t
+        <where>
+            s.tid=t.id
+            <if test="tid !=null">
+                and t.id in
+                <foreach item="tid" index="index" collection="list" open="(" separator="," close=")">
+                    #{tid}
+                </foreach>
+            </if>
+        </where>
+    </select>
+
+<!--bind 用法-->
+<!--    <select id="getStudentsByLikeTeacherName" parameterType="String" resultType="Mybatis_Student">-->
+<!--        select s.* from student s,teacher t where s.tid=t.id-->
+<!--        <if test="name != null">-->
+<!--            <bind name="t_name" value="'%'+name+'%'" />-->
+<!--            and t.name like #{t_name}-->
+<!--        </if>-->
+<!--    </select>-->
+
+<!--trim 用法  -->
+    <select id="getStudentsByLikeTeacherName" parameterType="String" resultType="Mybatis_Student">
+        select s.* from student s,teacher t
+        <trim prefix="where" suffix="and">
+            s.tid=t.id
+        </trim>
+        <if test="name != null">
+            <bind name="t_name" value="'%'+name+'%'" />
+            t.name like #{t_name}
+        </if>
+    </select>
+
+<!--PagerHelper用法-->
+    <select id="getAllStudents" resultType="Mybatis_Student">
+        select * from student
+    </select>
+</mapper>

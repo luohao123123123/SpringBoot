@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>restful</title>
+</head>
+<body>
+<h3>查询数据</h3><br>
+
+<form action="select" method="get">
+    <input type="submit" value="查询">
+</form>
+<br>
+
+<h3>删除数据</h3><br>
+<form action="delete" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <input type="submit" value="删除">
+</form>
+<br>
+
+<h3>添加数据</h3><br>
+<form action="insert" method="post">
+    <input type="submit" value="添加">
+</form>
+<br>
+
+<h3>更新数据</h3><br>
+<form action="update" method="post">
+    <input type="hidden" name="_method" value="put">
+    <input type="submit" value="添加">
+</form>
+
+</body>
+</html>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.luohao.springboot.imp.StudentImp">
+    <resultMap id="BaseResultMap" type="Student">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="addr" jdbcType="VARCHAR" property="addr"/>
+    </resultMap>
+
+    <sql id="insert">
+        id,name,addr
+    </sql>
+
+<!--    application.yml 中通过 type-aliases-package 指定了实体类的为了，因此-->
+    <select id="getStudent" resultType="Student">
+        select *
+        from table1 limit 1
+    </select>
+
+    <delete id="deleteStudentWtihId" parameterType="Integer">
+        delete from table1
+        <where>id=#{id,jdbcType=INTEGER}</where>
+    </delete>
+
+    <insert id="insertStudent" parameterType="Student">
+        insert into table1 (<include refid="insert"/>) values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{addr,jdbcType=VARCHAR})
+    </insert>
+
+    <update id="updataById">
+        update table1
+        <set>name=#{name,jdbcType=VARCHAR},addr=#{addr,jdbcType=VARCHAR}</set>
+        <where>id=#{id,jdbcType=INTEGER}</where>
+    </update>
+
+
+
+</mapper>
