@@ -28,7 +28,6 @@ public class LogAnnoAspect {
      * @Before:前置通知，在方法执行之前，声明了通知内容
      * @annotation(logger):拿到了自定义的注解对象
      * JoinPoint:连接点对象，通过它可以获取到目标方法的相关信息
-     * @param logger
      */
     @Before(value = "pointcut() && @annotation(logger)", argNames = "joinPoint,logger")
     public void advice(JoinPoint joinPoint,LogAnnotation logger) {
@@ -48,8 +47,6 @@ public class LogAnnoAspect {
      * 修改方法的参数
      * ProceedingJoinPoint:JoinPoint的子类，比JoinPoint多了返回值
      * proceed:让目标方法执行，和更新参数列表
-     * @param joinPoint
-     * @param logger
      */
     @Around(value = "pointcut() && @annotation(logger)")
     public Object advice(ProceedingJoinPoint joinPoint, LogAnnotation logger){

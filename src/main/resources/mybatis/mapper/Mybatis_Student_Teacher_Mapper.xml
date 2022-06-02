@@ -25,7 +25,7 @@
 <!--    </select>-->
 
 <!--  choose-when-otherwise 用法   -->
-    <select id="getStudentsByTid" parameterType="INTEGER" resultType="Mybatis_Student">
+    <select id="getStudentsByTid" parameterType="INTEGER" resultType="com.luohao.springboot.bean.Mybatis_Student">
         select s.* from student s,teacher t
         <where>
          s.tid=t.id
@@ -44,7 +44,7 @@
     </select>
 
 <!--    foreach用法-->
-    <select id="getStudentsByTids" parameterType="INTEGER" resultType="Mybatis_Student">
+    <select id="getStudentsByTids" parameterType="INTEGER" resultType="com.luohao.springboot.bean.Mybatis_Student">
         select s.* from student s,teacher t
         <where>
             s.tid=t.id
@@ -67,7 +67,7 @@
 <!--    </select>-->
 
 <!--trim 用法  -->
-    <select id="getStudentsByLikeTeacherName" parameterType="String" resultType="Mybatis_Student">
+    <select id="getStudentsByLikeTeacherName" parameterType="String" resultType="com.luohao.springboot.bean.Mybatis_Student">
         select s.* from student s,teacher t
         <trim prefix="where" suffix="and">
             s.tid=t.id
@@ -79,7 +79,7 @@
     </select>
 
 <!--PagerHelper用法-->
-    <select id="getAllStudents" resultType="Mybatis_Student">
+    <select id="getAllStudents" resultType="com.luohao.springboot.bean.Mybatis_Student">
         select * from student
     </select>
 </mapper>

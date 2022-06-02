@@ -10,17 +10,12 @@ import com.luohao.springboot.bean.Student;
 public class TestAnnotationTest1 {
     public static void main(String[] args) {
         Student student=new Student();
-        try {
-            Class<?> class1 = Class.forName("com.luohao.springboot.bean.Student");
-            if(class1.isAnnotationPresent(TestAnnotation.class)) {
-                TestAnnotation annotation = class1.getAnnotation(TestAnnotation.class);
-                student.setId(annotation.id());
-                student.setName(annotation.name());
-                student.setAddr(annotation.addr());
-            }
-
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+        Class<Student> studentClass = Student.class;
+        if(studentClass.isAnnotationPresent(TestAnnotation.class)) {
+            TestAnnotation annotation = studentClass.getAnnotation(TestAnnotation.class);
+            student.setId(annotation.id());
+            student.setName(annotation.name());
+            student.setAddr(annotation.addr());
         }
 
         System.out.println(student);
