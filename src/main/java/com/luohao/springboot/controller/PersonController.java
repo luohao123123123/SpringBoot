@@ -26,11 +26,11 @@ public class PersonController {
 
     @ResponseBody
     @RequestMapping("/Person")   //这里如果直接返回Person，会报错，自己引用了自己， ProcessDefinition属性里面有一些属性会导致循环引用，可以先把所有的属性取出来，装进Map，最后返回一个Map
-    public Map hello(){
+    public Map<Object,Object> hello(){
         log.info("{}",person); //输出重要信息
         log.warn("{}",person); //输出警告信息
         log.error("{}",person); //输出错误信息
-        Map PersonMap=new HashMap();
+        Map<Object,Object> PersonMap=new HashMap<>();
         PersonMap.put("LastName",person.getLastName());
         PersonMap.put("Age",person.getAge());
         PersonMap.put("Birth",person.getBirth());

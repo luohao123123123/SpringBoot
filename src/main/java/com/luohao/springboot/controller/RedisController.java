@@ -39,8 +39,8 @@ public class RedisController {
      * @return value
      */
     @ResponseBody
-    @GetMapping("redisTypeString")
-    public R RedisTypeString(){
+    @GetMapping(value = "redisTypeString",name = "redis String类型")
+    public R<Object> RedisTypeString(){
         redisTemplate.setKeySerializer(new StringRedisSerializer());  //重新设置key的序列化方式，默认为jdk序列化
         redisTemplate.setValueSerializer(new StringRedisSerializer());  //重新设置value的序列化方式，默认为jdk序列化
         ValueOperations<Object, Object> string = redisTemplate.opsForValue();
@@ -54,8 +54,8 @@ public class RedisController {
      * @return value
      */
     @ResponseBody
-    @GetMapping("redisTypeList")
-    public R RedisTypeList(){
+    @GetMapping(value = "redisTypeList",name = "redis List类型")
+    public R<Object> RedisTypeList(){
         redisTemplate.setKeySerializer(new StringRedisSerializer());  //重新设置key的序列化方式，默认为jdk序列化
         redisTemplate.setValueSerializer(new StringRedisSerializer());  //重新设置value的序列化方式，默认为jdk序列化
         ListOperations<Object, Object> list = redisTemplate.opsForList();
@@ -69,7 +69,7 @@ public class RedisController {
      */
     @ResponseBody
     @GetMapping("redisTypeHash")
-    public R RedisTypeHash(){
+    public R<Object> RedisTypeHash(){
         redisTemplate.setKeySerializer(new StringRedisSerializer());  //重新设置key的序列化方式，默认为jdk序列化
         redisTemplate.setValueSerializer(new StringRedisSerializer());  //重新设置value的序列化方式，默认为jdk序列化
         redisTemplate.setHashKeySerializer(new StringRedisSerializer());    //重新设置Hash类型key的序列化方式，默认为jdk序列化
@@ -85,7 +85,7 @@ public class RedisController {
      */
     @ResponseBody
     @GetMapping("redisTypeSet")
-    public R RedisTypeSet(){
+    public R<Object> RedisTypeSet(){
         redisTemplate.setKeySerializer(new StringRedisSerializer());  //重新设置key的序列化方式，默认为jdk序列化
         redisTemplate.setValueSerializer(new StringRedisSerializer());  //重新设置value的序列化方式，默认为jdk序列化
         SetOperations<Object, Object> set = redisTemplate.opsForSet();
@@ -99,7 +99,7 @@ public class RedisController {
      */
     @ResponseBody
     @GetMapping("redisTypeZSet")
-    public R RedisTypeZSet(){
+    public R<Object> RedisTypeZSet(){
         redisTemplate.setKeySerializer(new StringRedisSerializer());  //重新设置key的序列化方式，默认为jdk序列化
         redisTemplate.setValueSerializer(new StringRedisSerializer());  //重新设置value的序列化方式，默认为jdk序列化
         ZSetOperations<Object, Object> zset = redisTemplate.opsForZSet();
@@ -113,7 +113,7 @@ public class RedisController {
      */
     @ResponseBody
     @GetMapping("redisTypeHyperLogLog")
-    public R RedisTypeHyperLogLog(){
+    public R<Object> RedisTypeHyperLogLog(){
         redisTemplate.setKeySerializer(new StringRedisSerializer());  //重新设置key的序列化方式，默认为jdk序列化
         redisTemplate.setValueSerializer(new StringRedisSerializer());  //重新设置value的序列化方式，默认为jdk序列化
         HyperLogLogOperations<Object, Object> hyperLogLog = redisTemplate.opsForHyperLogLog();
@@ -123,13 +123,13 @@ public class RedisController {
 
     /**
      * JavaBean存取
-     * @return
+     * @return javaBean
      */
     @ResponseBody
     @GetMapping("redisTypeJavaBean")
-    public R RedisTypeJavaBean(){
+    public R<Object> RedisTypeJavaBean(){
         redisTemplate.setKeySerializer(new StringRedisSerializer());  //重新设置key的序列化方式，默认为jdk序列化
-        redisTemplate.setValueSerializer(new Jackson2JsonRedisSerializer<Object>(Object.class));  //重新设置value的序列化方式，默认为jdk序列化,这里value是java对象，所以使用Jackson2JsonRedisSerializer
+        redisTemplate.setValueSerializer(new Jackson2JsonRedisSerializer<>(Object.class));  //重新设置value的序列化方式，默认为jdk序列化,这里value是java对象，所以使用Jackson2JsonRedisSerializer
         ValueOperations<Object, Object> JavaBean = redisTemplate.opsForValue();
         JavaBean.set("Person",person);
         Object value = JavaBean.get("Person");

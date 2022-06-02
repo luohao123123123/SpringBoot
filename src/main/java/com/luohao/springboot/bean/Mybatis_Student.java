@@ -1,8 +1,14 @@
 package com.luohao.springboot.bean;
 
+import com.luohao.springboot.annotation.IdFormatter;
+import org.springframework.stereotype.Component;
+
+import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
+@Component
 public class Mybatis_Student {
+    @NotNull
     private int id;
     private String name;
     private String sex;

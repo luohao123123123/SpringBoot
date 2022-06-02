@@ -2,7 +2,6 @@ package com.luohao.springboot.utils;
 
 import com.luohao.springboot.R.R;
 import com.luohao.springboot.R.Renum;
-import com.luohao.springboot.bean.Mybatis_Student;
 
 public class RUtils {
     /**
@@ -10,8 +9,8 @@ public class RUtils {
      * @param object 数据
      * @return r
      */
-    public static R success(Object object){
-        R r=new R();
+    public static R<Object> success(Object object){
+        R<Object> r=new R<>();
         r.setCode(Renum.Success.getCode());
         r.setMsg(Renum.Success.getMsg());
         r.setData(object);
@@ -22,7 +21,7 @@ public class RUtils {
      * 成功但是不返回数据
      * @return
      */
-    public static R success(){
+    public static R<Object> success(){
         return success(null);
     }
 
@@ -30,10 +29,22 @@ public class RUtils {
      * 失败返回信息
      * @return
      */
-    public static R error(Integer code,String msg){
-        R r=new R();
+    public static R<Object> error(Integer code,String msg){
+        R<Object> r=new R<>();
         r.setCode(code);
         r.setMsg(msg);
         return r;
+    }
+
+    //根据code获取msg
+    public static <T> String getmsg(Class<T> renum, int code){
+        T[] RenumArray = renum.getEnumConstants();
+        for(T r:RenumArray){
+            Renum R = (Renum)r;
+            if(R.getCode()==code){
+                return R.getMsg();
+            }
+        }
+        return null;
     }
 }

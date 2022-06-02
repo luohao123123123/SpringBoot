@@ -4,5 +4,5 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <!-- 配置一个spring组件，需要在controller使用@ImportResource(locations = {"classpath:/beans.xml"}) 将配置加载到项目中，spring组件才生效-->
-    <bean id="personService" class="com.luohao.springboot.service.PersonService"/>
+    <bean id="personService" class="com.luohao.springboot.imp.PersonImp"/>
 </beans>

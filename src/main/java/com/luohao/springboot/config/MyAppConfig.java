@@ -4,7 +4,6 @@ package com.luohao.springboot.config;
 import com.luohao.springboot.config.webConfig.MyFilter;
 import com.luohao.springboot.config.webConfig.MyListener;
 import com.luohao.springboot.config.webConfig.MyServlet;
-import com.luohao.springboot.imp.PersonImp;
 import com.luohao.springboot.service.PersonService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -34,8 +33,8 @@ public class MyAppConfig {
 
     //  将personService添加到容器中
     @Bean
-    public PersonImp personService(){
-       log.info("在容器中添加了一个组件：personService");
+    public PersonService personService(){
+       log.info("在容器中添加了一个组件：personSevice");
         return new PersonService();
     }
 
@@ -74,4 +73,5 @@ public class MyAppConfig {
         MyListener myListener = new MyListener();
         return new ServletListenerRegistrationBean<>(myListener);
     }
+
 }

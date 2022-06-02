@@ -21,7 +21,7 @@ public class SqlTest {
 
 
     @RequestMapping("sqltest")
-    public R sqltest1() throws SQLException {
+    public R<Object> sqltest1() throws SQLException {
         System.out.println("默认数据源为：" + dataSource.getClass());
         System.out.println("数据库连接实例：" + dataSource.getConnection());
         String sql="select addr from table1 where name='zhangsan' limit 1";

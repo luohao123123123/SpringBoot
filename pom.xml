@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <!--SpringBoot父项目依赖管理-->
+<!--SpringBoot父项目依赖管理-->
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -23,13 +23,19 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+<!--Aop切面-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
 <!--引入test-starter-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-<!--解决 配置yaml时：Spring Boot Configuration Annotation Processor not configured         -->
+<!--解决 配置yaml时：Spring Boot Configuration Annotation Processor not configured-->
+<!--@ConfiguaritionProperties的执行器的配置-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
@@ -81,7 +87,7 @@
             <artifactId>pagehelper-spring-boot-starter</artifactId>
             <version>1.4.2</version>
         </dependency>
-<!--Files-->
+ <!--Files，文件下载和上传-->
         <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
         <dependency>
             <groupId>commons-io</groupId>
@@ -106,13 +112,45 @@
             <artifactId>fastjson</artifactId>
             <version>1.2.75</version>
         </dependency>
-<!--        热更新-->
+        <!--导入自定义的工具jar包(会jar包冲突，启动不了项目)-->
+        <!--        <dependency>-->
+        <!--            <groupId>com.luohao</groupId>     &lt;!&ndash; 自定义即可 &ndash;&gt;-->
+        <!--            <artifactId>Utils</artifactId>    &lt;!&ndash; jar名称 &ndash;&gt;-->
+        <!--            <version>1.0.0</version>          &lt;!&ndash; 如果jar包未指定自定义即可&ndash;&gt;-->
+        <!--            <type>jar</type>-->
+        <!--            <scope>system</scope>-->
+        <!--            <systemPath>${project.basedir}/src/main/resources/lib/Util.jar</systemPath>    &lt;!&ndash; 使用jar所在的绝对路径 &ndash;&gt;-->
+        <!--        </dependency>-->
+<!--导入动态代理-->
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
+            <version>3.3.0</version>
+        </dependency>
+<!--导入数据校验-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+<!--快重启 热部署-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
-            <optional>true</optional>
+            <optional>true</optional> <!-- 可选 -->
         </dependency>
 
 
+
+
+
     </dependencies>
+<!--    <build>-->
+<!--        <plugins>-->
+<!--            <plugin>-->
+<!--                <groupId>org.springframework.boot</groupId>-->
+<!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
+<!--            </plugin>-->
+<!--        </plugins>-->
+<!--    </build>-->
+
 </project>

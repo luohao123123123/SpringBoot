@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.util.concurrent.TimeUnit;
 
 @Slf4j
 @Controller
@@ -38,7 +39,7 @@ public class uploadFileController {
     @ResponseBody
     @PostMapping("/uploadFile")
     // 使用数组可以实现多文件上传，单文件的话不用数组
-    public R uploadFile(@RequestParam(value = "file",required = false) MultipartFile[] multipartFile) throws IOException {
+    public R<Object> uploadFile(@RequestParam(value = "file",required = false) MultipartFile[] multipartFile) throws IOException {
         for (MultipartFile file : multipartFile) {
             String fileLocation = UPLOAD_PATH + file.getOriginalFilename();
             FilesUtil.upload(file.getInputStream(), new File(fileLocation));

@@ -20,9 +20,13 @@ public class LoginController {
 
     @GetMapping(value = "/login")
     public String login(HttpSession session, @RequestParam(value="username", required=false) String username, @RequestParam(value="pwd", required=false) String pwd, Map<String, Object> map){
-        if(username.isEmpty() || pwd.isEmpty()){
-            map.put("msg","请输入账号或密码");
-            return "/login.html";
+        if(username==null || pwd==null){
+//            map.put("msg","请先登录！");
+            return "/login";
+        }
+        else if(username.isEmpty() || pwd.isEmpty()){
+            map.put("msg","请输入账号或密码！");
+            return "/login";
         }
         else if (Objects.equals(username, "张三") && Objects.equals(pwd,"123")) {
             session.setAttribute("loginUserName", username);
@@ -30,9 +34,9 @@ public class LoginController {
             return "redirect:/home.html";
         }
         else {
-            map.put("msg","用户名或密码错误");
+            map.put("msg","用户名或密码错误!");
             log.error("登陆失败");
-            return "/login.html";
+            return "/login";
         }
     }
 

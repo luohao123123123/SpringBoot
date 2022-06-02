@@ -1,15 +1,38 @@
 package com.luohao.springboot.imp;
 
 import com.luohao.springboot.bean.Mybatis_Student;
-import com.luohao.springboot.bean.Student;
-import org.apache.ibatis.annotations.Mapper;
+import com.luohao.springboot.dao.Mybatis_Student_TeacherDao;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Mapper
-public interface Mybatis_Student_Teacher_Imp {
-    List<Mybatis_Student> getStudentsByTid(int tid);   //根据tid查询Student
-    List<Mybatis_Student> getStudentsByTids(List<Integer> tid);  //根据一组tid查询Student
-    List<Mybatis_Student> getStudentsByLikeTeacherName(String name);  //根据teacher_name进行模糊查询Student
-    List<Mybatis_Student> getAllStudents();   //查询所有的Student
+@Repository
+public class Mybatis_Student_Teacher_Imp implements Mybatis_Student_TeacherDao {
+    @Qualifier("mybatis_Student_TeacherDao")  //用来区分
+    @Autowired
+    Mybatis_Student_TeacherDao mybatisStudentTeacherDao;
+
+
+    @Override
+    public List<Mybatis_Student> getStudentsByTid(int tid) {
+        return mybatisStudentTeacherDao.getStudentsByTid(tid);
+    }
+
+    @Override
+    public List<Mybatis_Student> getStudentsByTids(List<Integer> tid) {
+        return mybatisStudentTeacherDao.getStudentsByTids(tid);
+    }
+
+    @Override
+    public List<Mybatis_Student> getStudentsByLikeTeacherName(String name) {
+        return mybatisStudentTeacherDao.getStudentsByLikeTeacherName(name);
+    }
+
+    @Override
+    public List<Mybatis_Student> getAllStudents() {
+        return mybatisStudentTeacherDao.getAllStudents();
+    }
 }

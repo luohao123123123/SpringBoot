@@ -16,6 +16,7 @@ public class UrlViewMappingConfig implements WebMvcConfigurer {
         registry.addViewController("/").setViewName("login");
         registry.addViewController("/LOGIN").setViewName("login");
         registry.addViewController("/index.html").setViewName("login");
+        registry.addViewController("/index").setViewName("login");
         registry.addViewController("/login.html").setViewName("login");
 
 

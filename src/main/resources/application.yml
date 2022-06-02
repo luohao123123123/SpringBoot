@@ -35,12 +35,26 @@ spring:
     hiddenmethod:
       filter:
         enabled: true
+#配置统一时间格式
+  jackson:
+    date-format: "yyyy-MM-dd HH:mm:ss"
+    time-zone: GMT+8
 #配置文件上传和下载的文件大小
   servlet:
     multipart:
       max-file-size: 100MB
       max-request-size: 100MB
-
+#当遇到同样名字的bean，是否允许覆盖
+  main:
+    allow-bean-definition-overriding: true
+#配置热部署
+  devtools:
+    restart:
+      enabled: true  #设置开启热部署
+      additional-paths: src/main/java #重启目录
+      exclude: WEB-INF/**
+  freemarker:
+    cache: false    #页面不加载缓存，修改即时生效
 
 ################################################## 数据源连接信息 ##########################################
 
@@ -107,10 +121,6 @@ spring:
     password: root        #密码
     database: 0           #数据库名，0~15
     timeout: 2000         #连接超时时长，单位：毫秒
-
-
-
-
 
 
 

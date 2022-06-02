@@ -27,8 +27,8 @@ public class MyLocaleResolverConfig implements LocaleResolver {
         log.info("语言：{}",language);
         //如果没有就使用默认的（根据主机的语言环境生成一个 Locale ）。
         if(StringUtils.isEmpty(language)){
-            Locale locale=Locale.getDefault();
-            return locale;
+
+            return  Locale.getDefault();
         }
         //如果请求的链接中携带了 国际化的参数
         else{

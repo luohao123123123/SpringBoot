@@ -1,13 +1,16 @@
 package com.luohao.springboot.service;
 
 import com.luohao.springboot.bean.Student;
+import com.luohao.springboot.dao.StudentDao;
 import com.luohao.springboot.imp.StudentImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 
-@Service("studentService")
-public class StudentService implements StudentImp {
+@Service
+public class StudentService implements StudentDao {
+
     @Autowired
     StudentImp studentImp;
 
@@ -30,5 +33,4 @@ public class StudentService implements StudentImp {
     public void updataById(int id, String name, String addr) {
         studentImp.updataById(id,name,addr);
     }
-
 }

@@ -1,13 +1,24 @@
 package com.luohao.springboot.bean;
 
+import com.luohao.springboot.annotation.TestAnnotation;
+import com.luohao.springboot.annotation.IdFormatter;
 import org.springframework.data.annotation.Id;
 import org.springframework.stereotype.Component;
 
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 
+
+@Component
+@TestAnnotation(id=4,name = "zhaoliu",addr = "中国")  //自定义注解
 public class Student {
     @Id
+    @IdFormatter //自定义注解：用来保证id必须为int类型
+    @NotNull     //JSR303校验 此字段不能为null
+    @DecimalMin("1") //JSR303校验 必须大于等于1
     private int id;
     private String name;
     private String addr;

@@ -1,24 +1,35 @@
 package com.luohao.springboot.imp;
 
 import com.luohao.springboot.bean.Student;
-import org.apache.ibatis.annotations.*;
+import com.luohao.springboot.dao.StudentDao;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
+@Repository
+public class StudentImp implements StudentDao {
+    @Autowired
+    StudentDao studentDao;
 
-@Mapper
-public interface StudentImp {
-//    @Select("select * from table1 limit 1")
-    Student getStudent();
+    @Override
+    public Student getStudent() {
+        return studentDao.getStudent();
+    }
 
-//    @Delete("delete from table1 where id=#{id,jdbcType=INTEGER}")
-    void deleteStudentWtihId(int id);
+    @Override
+    public void deleteStudentWtihId(int id) {
+        studentDao.deleteStudentWtihId(id);
+    }
 
-//    @Insert("insert into table1 (id,name,addr) values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{addr,jdbcType=VARCHAR})")
-    void insertStudent(Student student);
+    @Override
+    public void insertStudent(Student student) {
+        studentDao.insertStudent(student);
+    }
 
-//    @Update(" update table1" +
-//            "  set name = #{name,jdbcType=VARCHAR}," +
-//            "addr = #{addr,jdbcType=VARCHAR}" +
-//            "where id = #{id,jdbcType=INTEGER}")
-    void updataById(int id,String name,String addr);
+    @Override
+    public void updataById(int id, String name, String addr) {
+        studentDao.updataById(id,name,addr);
+    }
 
 }
