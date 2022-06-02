@@ -5,7 +5,7 @@ import com.luohao.springboot.annotation.IdFormatter;
 import org.springframework.data.annotation.Id;
 import org.springframework.stereotype.Component;
 
-import javax.validation.constraints.DecimalMax;
+
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 import java.util.Objects;

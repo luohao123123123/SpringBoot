@@ -1,6 +1,6 @@
 package com.luohao.springboot.bean;
 
-import com.luohao.springboot.annotation.IdFormatter;
+
 import org.springframework.stereotype.Component;
 
 import javax.validation.constraints.NotNull;
