@@ -22,7 +22,7 @@
         <where>id=#{id,jdbcType=INTEGER}</where>
     </delete>
 
-    <insert id="insertStudent" parameterType="Student">
+    <insert id="insertStudent" parameterType="com.luohao.springboot.bean.Student">
         insert into table1 (<include refid="insert"/>) values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{addr,jdbcType=VARCHAR})
     </insert>
 
