@@ -29,7 +29,7 @@ import java.util.Set;
 @Controller
 public class RedisController {
     @Autowired
-    private RedisTemplate<Object,Object> redisTemplate;
+    private RedisTemplate<Object,Object> redisTemplate;  //如果key和value的序列化方式都要设置为StringRedisSerializer，则可以直接使用StringRedisTemplate
     @Autowired
     Person person;
 
