@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.luohao.springboot.dao.StudentDao">
+<!--使用resultMap映射数据中的字段名和实体类的属性-->
     <resultMap id="BaseResultMap" type="com.luohao.springboot.bean.Student">
         <id column="id" jdbcType="INTEGER" property="id"/>
         <result column="name" jdbcType="VARCHAR" property="name"/>
@@ -9,6 +10,9 @@
 
     <sql id="insert">
         id,name,addr
+    </sql>
+    <sql id="insertValue">
+        (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{addr,jdbcType=VARCHAR})
     </sql>
 
 <!--    application.yml 中通过 type-aliases-package 指定了实体类的为了，因此-->
@@ -23,7 +27,7 @@
     </delete>
 
     <insert id="insertStudent" parameterType="com.luohao.springboot.bean.Student">
-        insert into table1 (<include refid="insert"/>) values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{addr,jdbcType=VARCHAR})
+        insert into table1 (<include refid="insert"/>) values (<include refid="insertValue"/>)
     </insert>
 
     <update id="updataById">
